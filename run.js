@@ -24,8 +24,7 @@ app.post('/printPDF', function(req,rsp) {
     let pdf = req.body.file;
     var bitmap = new Buffer(pdf, 'base64');
 
-    //:631/printers/EPSON_EPSON_XP-15000_Series
-    var printer = ipp.Printer("http://192.168.189.163:631/printers/EPSON_XP_15000_Series");
+    var printer = ipp.Printer("http://localhost:631/printers/EPSON_AL-M300");
     var msg = {
         'operation-attributes-tag': {
             'requesting-user-name': 'FixjeiPhone magazijn',
