@@ -42,6 +42,7 @@ app.post('/printPDF', function(req,rsp) {
 
 app.post('/printViaLocalPDF', function(req,rsp) {
     let pdf = req.body.file;
+    console.log(req.body);
     var bitmap = new Buffer(pdf, 'base64');
 
     var printer = ipp.Printer("http://localhost:631/printers/EPSON_EPSON_XP-15000_Series");
