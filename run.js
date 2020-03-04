@@ -22,10 +22,30 @@ app.use(function(req, res, next) {
 
 app.post('/printPDF', function(req,rsp) {
     let pdf = req.body.file;
-console.log(req.body)
     var bitmap = new Buffer(pdf, 'base64');
 
+    //:631/printers/EPSON_EPSON_XP-15000_Series
     var printer = ipp.Printer("http://192.168.189.163:631/printers/EPSON_XP_15000_Series");
+    var msg = {
+        'operation-attributes-tag': {
+            'requesting-user-name': 'FixjeiPhone magazijn',
+            'job-name': 'Test Printjob',
+            'document-format': 'application/pdf',
+        },
+        data: bitmap,
+    };
+    printer.execute("Print-Job", msg, function(err, res){
+        console.log(res);
+    });
+
+    rsp.sendStatus(200);
+});
+
+app.post('/printViaLocalPDF', function(req,rsp) {
+    let pdf = req.body.file;
+    var bitmap = new Buffer(pdf, 'base64');
+
+    var printer = ipp.Printer("http://localhost:631/printers/EPSON_XP_15000_Series");
     var msg = {
         'operation-attributes-tag': {
             'requesting-user-name': 'FixjeiPhone magazijn',
