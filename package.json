@@ -6,7 +6,7 @@
     "test": "cypress run",
     "cypress": "cypress open"
   },
-  "bin" : "$DIR\\node_modules\\npm\\cli.js",
+  "bin": "$DIR\\node_modules\\npm\\cli.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",

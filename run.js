@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+var https = require('https')
 
 var ipp = require('ipp');
 var PDFDocument = require('pdfkit');
@@ -14,16 +15,17 @@ app.use(bodyParser.json({limit: '50mb',extended: true }));
 app.use(bodyParser.urlencoded({limit: '50mb',extended: true }));
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://www.fixjeiphone.nl"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 app.post('/printPDF', function(req,rsp) {
     let pdf = req.body.file;
+console.log(req.body)
     var bitmap = new Buffer(pdf, 'base64');
 
-    var printer = ipp.Printer("http://192.168.189.130:631/printers/EPSON_AL-M300");
+    var printer = ipp.Printer("http://192.168.189.163:631/printers/DYMO_LabelWriter_450_Turbo");
     var msg = {
         'operation-attributes-tag': {
             'requesting-user-name': 'FixjeiPhone magazijn',
@@ -48,6 +50,6 @@ function base64_decode(base64str, file) {
     console.log('******** File created from base64 encoded string ********');
 }
 
-const listener = app.listen(process.env.PORT || 3000, function () {
-    console.log('Your app is listening on port ' + listener.address().port);
-});
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000! Go to https://localhost:3000/')
+})
