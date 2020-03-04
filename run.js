@@ -25,7 +25,7 @@ app.post('/printPDF', function(req,rsp) {
 console.log(req.body)
     var bitmap = new Buffer(pdf, 'base64');
 
-    var printer = ipp.Printer("http://192.168.189.163:631/printers/DYMO_LabelWriter_450_Turbo");
+    var printer = ipp.Printer("http://192.168.189.163:631/printers/EPSON_XP_15000_Series");
     var msg = {
         'operation-attributes-tag': {
             'requesting-user-name': 'FixjeiPhone magazijn',
