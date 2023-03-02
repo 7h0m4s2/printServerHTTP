@@ -19,7 +19,7 @@
     "node": "8.x"
   },
   "devDependencies": {
-    "cypress": "^3.4.1",
+    "cypress": "^12.7.0",
     "nodemon": "^1.19.3"
   }
 }
